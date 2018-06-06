@@ -1,0 +1,129 @@
+body {
+    Bbackground-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/170VMZp/music-notes-flow-golden-sparking-loop-background-and-overlay-animation-effect-for-holiday-concert-and-special-events-blend-as-add-lighten-screen_4ysft42ml__F0005.png");
+    background: linear-gradient(to right, rgb(34, 33, 33) , rgb(143, 159, 192));
+ }
+
+ imgG.background {
+    -webkit-filter: blur(35px); /* Safari */
+    filter: blur(35px);
+
+#Ggrad1 {
+        height: 200px;
+        background: red; /* For browsers that do not support gradients */
+        background: linear-gradient(to bottom right, red, yellow); /* Standard syntax (must be last) */
+}
+
+
+.col-md-12 {
+    background-color: #18395c
+}
+
+.col-md-6 {
+    background-color: #18395c
+}
+
+}
+#collage hr{
+    border:none;
+    border-top:2px solid #6b0707;
+    height:1px;
+}
+
+#collage #playPanel {
+    background-color:#18395c;
+    padding:10px 0px;
+    margin: 10px auto;
+    max-width:900px;
+    width:95%;
+}
+
+#collage #actualImageBox {
+    display: inline-block;
+    font-size:0.8em;
+    margin: 10px 10px;
+    vertical-align: top;
+    width:680px;
+}
+
+#collage #stepBox, #collage #timeBox {
+    display:inline-block;
+    width:48%;
+}
+
+#collage #stepBox div {
+    background-color:#c2defc;
+    display:inline-block;
+    padding:1px 4px;
+    margin: 0px auto;
+    max-width:800px;
+}
+
+#collage img#actualImage{
+    border:0px solid #a46;
+    height:480px;
+    width:480px;
+}
+
+#collage #sortable {
+    border:2px solid #a46;
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px;
+    padding: 1px;
+    width: 600px;
+}
+
+    #collage #sortable li {
+        background-size: 400% 400%;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
+
+#collageE button  {
+    background-color:#6b0707;
+    border:1px solid #cce;
+    display: inline;
+    font-size: 14px;
+    height: auto;
+    width: auto;
+    padding: 3px 8px;
+    
+}
+
+
+
+
+#justinHeader{text-align:center;
+              background-color:orange;
+              font-family:cursive;}
+
+#youtubeId{position:relative;
+           left:0px;}
+
+#puzzleInput{position:relative;
+             left:37px;}
+
+#space {
+     color: gold;
+     position: relative;
+     font-size: 60px;
+     left: 1667px;
+     top: 1154px;
+            }
+
+a{color:red;}
+
+.nav-wrapper {
+    position: relative;
+    height: 100%;
+    ;
+    background: linear-gradient(to right, rgb(34, 33, 33) , rgb(143, 159, 192));
+}
+
+
+             

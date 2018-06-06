@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Image Puzzle</title>
+    <link href="css/style2.css" rel="stylesheet" />
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/image-puzzle.js"></script>
+    <script src="css/materialize1.css"></script>
+    <link rel="stylesheet" href="css/materialize.min.css">
+</head>
+<body>
+
+
+        <nav>
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo">Logo</a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                  </ul>
+                </div>
+              </nav>
+
+
+
+  <!--HEADER, SPACE FOR RECOMMENDED LINKS AND INPUT BOX AREA -->  
+ <h1 >Enter your favorite artist below!</h1>
+ <div id='space'></div>
+ <form>
+    <label for='userInput' id='puzzleInput'>User Request:
+       <input type='text' id='userRequest'>
+       <input type='submit' id='userSubmit'>
+    </label>
+</form>
+
+
+
+<!--YOUTUBE INPUT BOX-->
+<form>
+    <label for='youtube' id='youtubeId'>YOUTUBE REQUEST
+        <input type='text' id='youTubeRequest'>
+        <input type='submit' id='youTubeClick'>
+    </label>
+</form>
+
+ <div id="justinHeader">
+     <h1>Feeling Puzzled!</h1>
+  <!--  <img src="http://worldartsme.com/images/puzzled-look-clipart-1.jpg"> -->
+     </div>
+ </div>
+
+<div container>
+  <div class="columnleft">
+
+
+
+    <div id="collage">
+        <h2>Image Puzzle</h2>
+        <hr />
+        <div id="playPanel" style="padding:5px;display:none;">
+            <h3 id="imgTitle"></h3> <hr />
+            <div style="display:inline-block; margin:auto; width:95%; vertical-align:top;">
+                <ul id="sortable" class="sortable"></ul>
+                <div id="actualImageBox" height="484" width="484px">  broken image placement
+                    <div id="stepBox">
+                        <div>Steps:</div><div class="stepCount">0</div>
+                    </div>
+                    <div id="timeBox">
+                        Time Taken: <span id="timerPanel"></span> secs
+                    </div>
+                    <div id='normalImageArea' height="284" width="284"><img id='normalImage' height="284" width="284"></div>
+             <!--       <img id="actualImage" height="284" width="284"/>  -->  <!-- real image placement-->
+                    <div>Re-arrange to create a picture like this.</div> 
+              
+                </div>
+            </div>
+        </div>
+        <!-- <div id='normalImageArea'><img id='normalImage'></div>   -->
+         <!--ATTEMPTED TO MAKE SEPERATE CONTAINER FOR UNALTERED PIC-->
+<!--Justin code/experiment-->
+
+
+            <!--END Experiment-->
+            
+        <div id="gameOver" style="display:none;">
+            <div style="background-color: #8e2b2b; padding: 5px 10px 20px 10px; text-align: center; ">
+                <h2 style="text-align:center">Game Over!!</h2>
+                Congratulations!! <br /> You have completed this picture.
+                <br />
+                Steps: <span class="stepCount">0</span> steps.
+                <br />
+                Time Taken: <span class="timeCount">0</span> seconds<br />
+                <div>
+                    <button type="button" onclick="window.location.reload(true);">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columnright">
+    
+        <div id="#actualImageBox">
+
+        </div>
+    </div>
+
+</div>
+        <script>
+
+            $("#youTubeClick").on("click", function(){
+                event.preventDefault();
+                console.log("clicked");
+                var userHit=$("#youTubeRequest").val();
+                console.log(userHit);
+                // console.log(actualImageBox);
+                // var queryUrl="https://www.youtube.com/iframe_api" + userHit + "apikey=AIzaSyBMcAuwEwiIzf1sPC1KdJ9A6MKC4x9ppj4"
+                var queryUrl="https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + userHit + "&key=AIzaSyBMcAuwEwiIzf1sPC1KdJ9A6MKC4x9ppj4"
+                // "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + userAsked + "&key=AIzaSyBMcAuwEwiIzf1sPC1KdJ9A6MKC4x9ppj4";
+               $.ajax({
+                   url:queryUrl,
+                   type:"GET",
+               }).then(function(res){
+                   console.log(JSON.stringify(res))
+               })
+           
+            })
+               
+        $("#userSubmit").on('click',function(event){
+            $("#space").empty();
+            $("#justinHeader").remove();
+       event.preventDefault();
+
+    //    console.log("fired!!");
+       var userAsked=$("#userRequest").val();
+       console.log(userSubmit)
+      // var queryUrl="http://api.giphy.com/v1/gifs/search?q=" + userAsked + "&api_key=nTv0EGtd08JY2KbjlEnIZwVsFolXRS2C&limit=5";
+         var queryUrl="https://rest.bandsintown.com/artists/" + userAsked + "?app_id=codingbootcamp"
+       $.ajax({
+           url:queryUrl,
+           type:"GET",
+           
+       }).then(function(res){
+         //  var image=res.data[0].images.original_still.url;
+         //  var title=res.data[0].title;
+         //  var smallStill=res.data[0].images.fixed_height_small_still.url
+            var image=res.image_url;
+            var title=res.name;
+            var smallStill=res.image;
+        
+         
+           console.log(res)
+
+
+
+
+           var lastFMurl="http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=df3ec894b81af4750356b76a2c709e80&artist=" + userAsked + "&format=json"
+        $.ajax({
+            url:lastFMurl,
+            type:"GET",
+        }).then(function(res){
+            console.log(res);
+            var band=res.artist.name;
+
+            var song=res.artist.url;
+            var recommend=res.artist.similar.artist;
+            for(var i=0;i<recommend.length;i++){
+                console.log(recommend[i])
+                $("#lists").append(recommend[i].name)
+            $.each([recommend[i].name],function (band, value){
+                $.each([recommend[i].url],function(band,url){
+                console.log(value);
+                $("#space").append("<ul><li> " + value + " Url:<a href=" + url + ">Click here</a></li></ul>")
+            
+          
+                // $("#space").append("<ul><li> " + value + " Url:<a href=" + url + ">Click here</a></li></ul>")
+    
+   
+                // <iframe src="/examples/html/demo-page.html" frameborder="0">
+                //     alternative content for browsers which do not support iframe.
+                // </iframe>
+
+
+
+
+/*
+            var images = [
+                { src: 'jtree2.jpg', title: 'London Bridge' },
+                { src: 'justinclimb.jpg', title: 'Lotus Temple' },
+                { src: 'images/qutub-minar.jpg', title: 'Qutub Minar' },
+                { src: 'images/statue-of-liberty.jpg', title: 'Statue Of Liberty' },
+                { src: 'images/taj-mahal.jpg', title: 'Taj Mahal' }
+            ]; 
+            */
+
+            var images={
+                 src:image,
+                 name:title,
+                 still:smallStill,
+           }
+
+            $(function () {
+                var gridSize = $('#levelPanel :radio:checked').val();
+                imagePuzzle.startGame(images, gridSize);
+                $('#newPhoto').click(function () {
+                    var gridSize = $('#levelPanel :radio:checked').val();  // Take the updated gridSize from UI.
+                    imagePuzzle.startGame(images, gridSize);
+                });
+
+                $('#levelPanel :radio').change(function (e) {
+                    var gridSize = $(this).val();
+                    imagePuzzle.startGame(images, gridSize);
+                });
+            });
+            function rules() {
+                alert('Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.');
+            }
+            function about() {
+                alert('Developed by Anurag Gandhi. \nHe can be contacted at: soft.gandhi@gmail.com');
+            }
+        })
+    });
+            
+            }
+        });
+       });
+        });
+        </script>
+    
+</body>
+</html>
